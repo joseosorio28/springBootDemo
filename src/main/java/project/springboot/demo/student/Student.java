@@ -89,6 +89,12 @@ public class Student {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Student{"+
+                "id="+id+
+                ", name="+name+
+                ", email="+email+
+                ", dateOfBirth="+dateOfBirth+
+                ", age="+age+
+                "}";
     }
 }
