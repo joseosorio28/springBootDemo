@@ -31,4 +31,12 @@ public class StudentService {
         System.out.println(student);
     }
 
+    public void updateStudent(Student student) {
+        Optional<Student> studentByName = studentRepository.findByName(student.getName());
+
+        if(studentByName.isPresent()){
+            studentRepository.save(student);
+        }
+        System.out.println(student);
+    }
 }

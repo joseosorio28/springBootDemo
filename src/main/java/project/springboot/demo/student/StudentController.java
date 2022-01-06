@@ -31,6 +31,11 @@ public class StudentController {
         studentService.addNewStudent(student);
     }
 
+    @PutMapping("/update")
+    public void updateStudentRegister(@RequestBody Student student){
+        studentService.updateStudent(student);
+    }
+
 }
 
 
