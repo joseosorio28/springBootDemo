@@ -31,6 +31,10 @@ public class StudentService {
         System.out.println(student);
     }
 
+    public Student getStudent(Long id) {
+        return studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
+    }
+
     public void updateStudent(Student student, Long id) {
         Student studentByName = studentRepository.findByName(student.getName()).map(
                 updatedStudent -> {
@@ -44,7 +48,18 @@ public class StudentService {
         });
     }
 
-    public Student getStudent(Long id) {
-        return studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
+    public void updateStudent(Student student) {
+//        Student studentByName = studentRepository.findByName(student.getName()).map(
+//                updatedStudent -> {
+//                    updatedStudent.setName(student.getName());
+//                    updatedStudent.setEmail(student.getEmail());
+//                    updatedStudent.setDateOfBirth((student.getDateOfBirth()));
+//                    return studentRepository.save(updatedStudent);
+//                }).orElseGet(() -> {
+//            student.setId(id);
+//            return studentRepository.save(student);
+//        });
     }
+
+
 }
