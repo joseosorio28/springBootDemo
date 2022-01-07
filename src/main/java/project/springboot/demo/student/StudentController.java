@@ -26,14 +26,19 @@ public class StudentController {
         return studentService.getStudents();
     }
 
+    @GetMapping("/db/{id}")
+    public void getStudent(@PathVariable Long id) {
+        studentService.getStudent(id);
+    }
+
     @PostMapping("/add")
     public void registerNewStudent(@RequestBody Student student){
         studentService.addNewStudent(student);
     }
 
-    @PutMapping("/update")
-    public void updateStudentRegister(@RequestBody Student student){
-        studentService.updateStudent(student);
+    @PutMapping("/update/{id}")
+    public void updateStudentRegister(@RequestBody Student student, @PathVariable Long id){
+        studentService.updateStudent(student,id);
     }
 
 }

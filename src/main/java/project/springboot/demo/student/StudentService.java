@@ -31,12 +31,20 @@ public class StudentService {
         System.out.println(student);
     }
 
-    public void updateStudent(Student student) {
-        Optional<Student> studentByName = studentRepository.findByName(student.getName());
+    public void updateStudent(Student student, Long id) {
+        Student studentByName = studentRepository.findByName(student.getName()).map(
+                updatedStudent -> {
+                    updatedStudent.setName(student.getName());
+                    updatedStudent.setEmail(student.getEmail());
+                    updatedStudent.setDateOfBirth((student.getDateOfBirth()));
+                    return studentRepository.save(updatedStudent);
+                }).orElseGet(() -> {
+            student.setId(id);
+            return studentRepository.save(student);
+        });
+    }
 
-        if(studentByName.isPresent()){
-            studentRepository.save(student);
-        }
-        System.out.println(student);
+    public void getStudent(Long id) {
+        studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
     }
 }

@@ -3,6 +3,7 @@ package project.springboot.demo.student;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -86,6 +87,24 @@ public class Student {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o)
+            return true;
+        if (!(o instanceof Student))
+            return false;
+        Student student = (Student) o;
+        return Objects.equals(this.id, student.id) && Objects.equals(this.name, student.name)
+                && Objects.equals(this.email, student.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.name, this.email);
+    }
+
 
     @Override
     public String toString() {
