@@ -62,7 +62,7 @@ public class StudentController {
 //    }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Student> updateStudentRegister(@Valid Student student, @PathVariable @Min(1) Long id){
+    public ResponseEntity<Student> updateStudentRegister(@Valid @RequestBody Student student, @PathVariable @Min(1) Long id){
         studentService.updateStudent(student,id);
         return new ResponseEntity<>(student,HttpStatus.FOUND);
     }
