@@ -44,7 +44,7 @@ public class StudentService {
         });
     }
 
-    public void getStudent(Long id) {
-        studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
+    public Student getStudent(Long id) {
+        return studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
     }
 }

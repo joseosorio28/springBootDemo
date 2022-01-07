@@ -27,8 +27,8 @@ public class StudentController {
     }
 
     @GetMapping("/db/{id}")
-    public void getStudent(@PathVariable Long id) {
-        studentService.getStudent(id);
+    public Student getStudent(@PathVariable Long id) {
+        return studentService.getStudent(id);
     }
 
     @PostMapping("/add")
