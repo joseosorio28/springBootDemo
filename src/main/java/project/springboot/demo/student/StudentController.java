@@ -67,10 +67,25 @@ public class StudentController {
         return new ResponseEntity<>(student,HttpStatus.FOUND);
     }
 
+    @PutMapping(path="{id}")
+    public ResponseEntity<String> updateStudentRegister2(
+            @PathVariable @Min(1) Long id,
+            @RequestParam(required=false) String name,
+            @RequestParam(required=false) String email){
+        studentService.updateStudent(id,name,email);
+        return new ResponseEntity<>(" student id "+id+" updated",HttpStatus.FOUND);
+    }
+
 //    @PutMapping("/update")
 //    public void updateStudentRegister(@Valid @RequestBody Student student){
 //        studentService.updateStudent(student);
 //    }
+
+    @DeleteMapping(path="{id}")
+    public ResponseEntity<String> deleteStudentRegister(@PathVariable("id") @Min(1) Long id){
+        studentService.deleteStudent(id);
+        return new ResponseEntity<>("Student deleted",HttpStatus.FOUND);
+    }
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
