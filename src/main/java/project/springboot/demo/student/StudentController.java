@@ -1,7 +1,6 @@
 package project.springboot.demo.student;
 
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,7 +18,7 @@ public class StudentController {
 
     private final StudentService studentService;
 
-    @Autowired
+    //@Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
@@ -84,7 +83,7 @@ public class StudentController {
     @DeleteMapping(path="{id}")
     public ResponseEntity<String> deleteStudentRegister(@PathVariable("id") @Min(1) Long id){
         studentService.deleteStudent(id);
-        return new ResponseEntity<>("Student deleted",HttpStatus.FOUND);
+        return new ResponseEntity<>("Student deleted",HttpStatus.OK);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
